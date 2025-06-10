@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showExchangeInfo = false
+    @State private var leftAmount = ""
+    @State private var rightAmount = ""
     
     var body: some View {
         ZStack {
@@ -23,6 +25,7 @@ struct ContentView: View {
                     .frame(height: 200)
                     .cornerRadius(50)
                     .shadow(color: .black.opacity(0.3), radius: 10, x: 3, y: 55)
+                    .padding(40)
                 
                 // Currency exchange text
                 Text("Currency Exchange")
@@ -47,9 +50,12 @@ struct ContentView: View {
                                 .font(.headline)
                                 .foregroundStyle(.white)
                         }
+                        .padding(.bottom, -1)
                         
                         // Text field
-                        Text("Text field")
+                        TextField("Amount", text: $leftAmount)
+                            .textFieldStyle(.roundedBorder)
+                            .cornerRadius(40)
                     }
                     // Equal sign
                     Image(systemName: "equal")
@@ -71,11 +77,18 @@ struct ContentView: View {
                                 .scaledToFit()
                                 .frame(width: 33)
                         }
+                        .padding(.bottom, -1)
                         
                         // Text field
-                        Text("Text field")
+                        TextField("Amount", text: $rightAmount)
+                            .textFieldStyle(.roundedBorder)
+                            .multilineTextAlignment(.trailing)
+                            .cornerRadius(40)
                     }
                 }
+                .padding()
+                .background(.black.opacity(0.3))
+                .cornerRadius(30)
                 
                 Spacer()
                     
@@ -93,7 +106,7 @@ struct ContentView: View {
                 }
                 
             }
-            .border(.blue)
+//            .border(.blue)
 
         }
         
