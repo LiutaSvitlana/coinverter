@@ -14,18 +14,24 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Image(.background)
+            Image(.background2)
                 .resizable()
                 .ignoresSafeArea()
+                .blur(radius: 0.8)
+                .overlay(
+                    LinearGradient(
+                        gradient: Gradient(colors: [
+                            Color.black.opacity(0.3),
+                            Color.black.opacity(0.5),
+                            Color.black.opacity(0)
+                        ]),
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                )
             
             VStack {
-                Image(.khajiit)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 200)
-                    .cornerRadius(50)
-                    .shadow(color: .black.opacity(0.3), radius: 10, x: 3, y: 55)
-                    .padding(40)
+
                 
                 // Currency exchange text
                 Text("Currency Exchange")
@@ -33,21 +39,28 @@ struct ContentView: View {
                     .foregroundStyle(.white)
                     .fontWeight(.medium)
                 
+                Image(.khajiit)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 250)
+                    .cornerRadius(50)
+                    .shadow(color: .black.opacity(0.3), radius: 30, x: 3, y: 30)
+                    .padding(10)
                 // Conversion section
                 HStack {
                     // Left conversion section
                     VStack {
+                        // Currency image
+                        Image(.drakr)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 70)
+                            .shadow(color: .black.opacity(1), radius: 10)
                         // Currency
                         HStack {
-                            // Currency image
-                            Image(.ancientNordDrakr)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 33)
-                            
                             // Currency text
-                            Text("Ancient Nord")
-                                .font(.headline)
+                            Text("Drakr")
+                                .font(.subheadline)
                                 .foregroundStyle(.white)
                         }
                         .padding(.bottom, -1)
@@ -55,7 +68,9 @@ struct ContentView: View {
                         // Text field
                         TextField("Amount", text: $leftAmount)
                             .textFieldStyle(.roundedBorder)
+                            .multilineTextAlignment(.center)
                             .cornerRadius(40)
+                            .font(.subheadline)
                     }
                     // Equal sign
                     Image(systemName: "equal")
@@ -64,30 +79,32 @@ struct ContentView: View {
                     
                     // Right conversion section
                     VStack {
+                        // Currency image
+                        Image(.mala)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 70)
+                            .shadow(color: .black.opacity(1), radius: 10)
                         // Currency
                         HStack {
                             // Currency text
-                            Text("Ayleid Mala")
-                                .font(.headline)
+                            Text("Mala")
+                                .font(.subheadline)
                                 .foregroundStyle(.white)
-                            
-                            // Currency image
-                            Image(.ayleidMala)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 33)
                         }
                         .padding(.bottom, -1)
                         
                         // Text field
                         TextField("Amount", text: $rightAmount)
                             .textFieldStyle(.roundedBorder)
-                            .multilineTextAlignment(.trailing)
+                            .multilineTextAlignment(.center)
                             .cornerRadius(40)
+                            .font(.subheadline)
                     }
+                    
                 }
                 .padding()
-                .background(.black.opacity(0.3))
+//                .background(.black.opacity(0.5))
                 .cornerRadius(30)
                 
                 Spacer()
@@ -107,6 +124,7 @@ struct ContentView: View {
                 
             }
 //            .border(.blue)
+            .padding()
 
         }
         
