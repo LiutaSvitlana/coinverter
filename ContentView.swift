@@ -11,10 +11,11 @@ struct ContentView: View {
     @State private var showExchangeInfo = false
     @State private var leftAmount = ""
     @State private var rightAmount = ""
+    @Environment(\.colorScheme) var colorShame
     
     var body: some View {
         ZStack {
-            Image(.background2)
+            Image(.background6)
                 .resizable()
                 .ignoresSafeArea()
                 .blur(radius: 0.8)
@@ -22,8 +23,8 @@ struct ContentView: View {
                     LinearGradient(
                         gradient: Gradient(colors: [
                             Color.black.opacity(0.3),
-                            Color.black.opacity(0.5),
-                            Color.black.opacity(0)
+                            Color.black.opacity(0.2),
+                            Color.black.opacity(0.1)
                         ]),
                         startPoint: .top,
                         endPoint: .bottom
@@ -31,12 +32,10 @@ struct ContentView: View {
                 )
             
             VStack {
-
-                
                 // Currency exchange text
                 Text("Currency Exchange")
                     .font(.largeTitle)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(colorShame == .dark ? .black : .white)
                     .fontWeight(.medium)
                 
                 Image(.khajiit)
@@ -60,8 +59,8 @@ struct ContentView: View {
                         HStack {
                             // Currency text
                             Text("Drakr")
-                                .font(.subheadline)
-                                .foregroundStyle(.white)
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundStyle(colorShame == .dark ? .black : .white)
                         }
                         .padding(.bottom, -1)
                         
@@ -75,7 +74,7 @@ struct ContentView: View {
                     // Equal sign
                     Image(systemName: "equal")
                         .font(.largeTitle)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(colorShame == .dark ? .black : .white)
                     
                     // Right conversion section
                     VStack {
@@ -89,8 +88,8 @@ struct ContentView: View {
                         HStack {
                             // Currency text
                             Text("Mala")
-                                .font(.subheadline)
-                                .foregroundStyle(.white)
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundStyle(colorShame == .dark ? .black : .white)
                         }
                         .padding(.bottom, -1)
                         
@@ -104,7 +103,6 @@ struct ContentView: View {
                     
                 }
                 .padding()
-//                .background(.black.opacity(0.5))
                 .cornerRadius(30)
                 
                 Spacer()
@@ -117,7 +115,7 @@ struct ContentView: View {
                     } label: {
                         Image(systemName: "info.circle.fill")
                             .font(.largeTitle)
-                            .foregroundStyle(.white)
+                            .foregroundStyle(colorShame == .dark ? .black : .white)
                     }
                     .padding(.trailing)
                 }
@@ -125,9 +123,8 @@ struct ContentView: View {
             }
 //            .border(.blue)
             .padding()
-
+            
         }
-        
     }
 }
 
