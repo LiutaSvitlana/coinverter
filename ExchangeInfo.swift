@@ -40,95 +40,17 @@ struct ExchangeInfo: View {
                     .padding()
                 
                 // Exchange rates
-                HStack {
-                    // Left image
-                    Image(.drakr)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 40)
-                    // Exchange text
-                    Text("1 Drakr = 2 Mala")
-                    // Right image
-                    Image(.mala)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 40)
-                }
+                ExchangeRate(leftImage: .drakr, text: "1 Drakr = 2 Mala", rightImage: .mala)
                 
-//                HStack {
-//                    // Left image
-//                    Image(.mala)
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(height: 40)
-//                    // Exchange text
-//                    Text("1 Mala = 4 Nchuark")
-//                    // Right image
-//                    Image(.nchuark)
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(height: 50)
-//                }
-//                
-//                HStack {
-//                    // Left image
-//                    Image(.nchuark)
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(height: 50)
-//                    // Exchange text
-//                    Text("1 Nchuark = 2 Gibber")
-//                    // Right image
-//                    Image(.gibber)
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(height: 50)
-//                }
-//                
-//                HStack {
-//                    // Left image
-//                    Image(.gibber)
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(height: 50)
-//                    // Exchange text
-//                    Text("1 Gibber = 5 Sancar")
-//                    // Right image
-//                    Image(.sancar)
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(height: 50)
-//                }
-//                
-//                HStack {
-//                    // Left image
-//                    Image(.sancar)
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(height: 50)
-//                    // Exchange text
-//                    Text("1 Sancar = 2 Mallari")
-//                    // Right image
-//                    Image(.mallari)
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(height: 50)
-//                }
-//                
-//                HStack {
-//                    // Left image
-//                    Image(.mallari)
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(height: 50)
-//                    // Exchange text
-//                    Text("1 Mallari = 3 Drakr")
-//                    // Right image
-//                    Image(.drakr)
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(height: 50)
-//                }
+                ExchangeRate(leftImage: .mala, text: "1 Mala = 4 Nchuark", rightImage: .nchuark)
+                
+                ExchangeRate(leftImage: .nchuark, text: "1 Nchuark = 2 Gibber", rightImage: .gibber)
+                
+                ExchangeRate(leftImage: .gibber, text: "1 Gibber = 5 Sancar", rightImage: .sancar)
+                
+                ExchangeRate(leftImage: .sancar, text: "1 Sancar = 2 Mallari", rightImage: .mallari)
+                
+                ExchangeRate(leftImage: .mallari, text: "1 Mallari = 3 Drakr", rightImage: .drakr)
 
                 // Button
                 Button("Done") {
@@ -148,3 +70,4 @@ struct ExchangeInfo: View {
 #Preview {
     ExchangeInfo()
 }
+
