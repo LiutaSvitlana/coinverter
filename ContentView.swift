@@ -118,6 +118,9 @@ struct ContentView: View {
                             .foregroundStyle(colorShame == .dark ? .black : .white)
                     }
                     .padding(.trailing)
+                    .sheet(isPresented: $showExchangeInfo) {
+                        ExchangeInfo()
+                    }
                 }
                 
             }
