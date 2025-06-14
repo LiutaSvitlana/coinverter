@@ -14,7 +14,7 @@ struct ExchangeInfo: View {
         
         ZStack {
             // Background image
-            Image(.background6)
+            Image(.background)
                 .resizable()
                 .ignoresSafeArea()
                 .overlay(

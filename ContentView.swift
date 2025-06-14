@@ -15,7 +15,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Image(.background6)
+            Image(.background)
                 .resizable()
                 .ignoresSafeArea()
                 .blur(radius: 0.8)
