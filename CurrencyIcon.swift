@@ -27,7 +27,7 @@ struct CurrencyIcon: View {
                 
             }
             .padding(6)
-            .frame(width: 100, height: 100)
+            .frame(width: 90, height: 90)
             .background(.brown)
             .cornerRadius(50)
             
