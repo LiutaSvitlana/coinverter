@@ -5,6 +5,8 @@
 //  Created by Svitlana Liuta on 16.06.2025.
 //
 
+import SwiftUI
+
 enum Currency: Double {
     case mallari = 128
     case drakr = 16
@@ -12,4 +14,38 @@ enum Currency: Double {
     case nchuark = 4
     case gibber = 2
     case sancar = 1
+    
+    var image: ImageResource {
+        switch self {
+        case .mallari:
+                .mallari
+        case .drakr:
+                .drakr
+        case .mala:
+                .mala
+        case .nchuark:
+                .nchuark
+        case .gibber:
+                .gibber
+        case .sancar:
+                .sancar
+        }
+    }
+    
+    var name: String {
+        switch self {
+        case .mallari:
+                "Mallari"
+        case .drakr:
+                "Drakr"
+        case .mala:
+                "Mala"
+        case .nchuark:
+                "Nchuark"
+        case .gibber:
+                "Gibber"
+        case .sancar:
+                "Sancar"
+        }
+    }
 }
