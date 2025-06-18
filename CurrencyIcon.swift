@@ -24,6 +24,7 @@ struct CurrencyIcon: View {
                     .font(.caption)
                     .frame(maxWidth: .infinity)
                     .background(.brown.opacity(0.75))
+                    .foregroundStyle(.white)
                 
             }
             .padding(6)

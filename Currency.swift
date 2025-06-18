@@ -7,13 +7,15 @@
 
 import SwiftUI
 
-enum Currency: Double {
+enum Currency: Double, CaseIterable, Identifiable {
     case mallari = 128
     case drakr = 16
     case mala = 8
     case nchuark = 4
     case gibber = 2
     case sancar = 1
+    
+    var id: Currency { self }
     
     var image: ImageResource {
         switch self {

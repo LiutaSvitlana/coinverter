@@ -35,12 +35,12 @@ struct SelectCurrency: View {
                     .fontWeight(.bold)
                 
                 LazyVGrid(columns: [GridItem(), GridItem(), GridItem()]) {
-                    ForEach(0..<6) { _ in
-                        CurrencyIcon(currencyImage: .drakr, currencyName: "Darkr")
+                    ForEach(Currency.allCases) { currency in
+                        CurrencyIcon(currencyImage: currency.image,
+                                     currencyName: currency.name)
                     }
                 }
-
-                
+                .padding()                
                 
                 //Text
                 Text("Select the currency you would like to convert to:")
