@@ -9,9 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showExchangeInfo = false
+    @State var showSelectCurrency = false
+    
     @State private var leftAmount = ""
     @State private var rightAmount = ""
     @Environment(\.colorScheme) var colorShame
+    
+    @State var leftCurrency: Currency = .drakr
+    @State var rightCurrency: Currency = .mala
     
     var body: some View {
         ZStack {
@@ -50,7 +55,7 @@ struct ContentView: View {
                     // Left conversion section
                     VStack {
                         // Currency image
-                        Image(.drakr)
+                        Image(leftCurrency.image)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 70)
@@ -58,11 +63,14 @@ struct ContentView: View {
                         // Currency
                         HStack {
                             // Currency text
-                            Text("Drakr")
+                            Text(leftCurrency.name)
                                 .font(.system(size: 16, weight: .medium))
                                 .foregroundStyle(colorShame == .dark ? .black : .white)
                         }
                         .padding(.bottom, -1)
+                        .onTapGesture {
+                            showSelectCurrency.toggle()
+                        }
                         
                         // Text field
                         TextField("Amount", text: $leftAmount)
@@ -79,7 +87,7 @@ struct ContentView: View {
                     // Right conversion section
                     VStack {
                         // Currency image
-                        Image(.mala)
+                        Image(rightCurrency.image)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 70)
@@ -87,11 +95,14 @@ struct ContentView: View {
                         // Currency
                         HStack {
                             // Currency text
-                            Text("Mala")
+                            Text(rightCurrency.name)
                                 .font(.system(size: 16, weight: .medium))
                                 .foregroundStyle(colorShame == .dark ? .black : .white)
                         }
                         .padding(.bottom, -1)
+                        .onTapGesture {
+                            showSelectCurrency.toggle()
+                        }
                         
                         // Text field
                         TextField("Amount", text: $rightAmount)
@@ -120,6 +131,9 @@ struct ContentView: View {
                     .padding(.trailing)
                     .sheet(isPresented: $showExchangeInfo) {
                         ExchangeInfo()
+                    }
+                    .sheet(isPresented: $showSelectCurrency) {
+                        SelectCurrency(topCurrency: leftCurrency, bottomCurrency: rightCurrency)
                     }
                 }
                 
