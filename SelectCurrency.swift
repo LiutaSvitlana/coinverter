@@ -10,9 +10,6 @@ import SwiftUI
 struct SelectCurrency: View {
     @Environment(\.dismiss) var dismiss
     
-//    @FocusState var topCurrencySelect
-//    @FocusState var bottomCurrencySelect
-    
     @Binding var topCurrency: Currency
     @Binding var bottomCurrency: Currency
     
@@ -42,7 +39,6 @@ struct SelectCurrency: View {
                 
                 IconGrid(currency: $topCurrency)
                 .padding()
-//                .focused($topCurrencySelect)
                 
                 //Text
                 Text("Select the currency you would like to convert to:")
@@ -52,7 +48,6 @@ struct SelectCurrency: View {
                 //Currency icons
                 IconGrid(currency: $bottomCurrency)
                     .padding()
-//                    .focused($bottomCurrencySelect)
                 
                 
                 //Button

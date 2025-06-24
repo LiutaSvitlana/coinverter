@@ -8,11 +8,11 @@
 import SwiftUI
 
 enum Currency: Double, CaseIterable, Identifiable {
-    case mallari = 128
-    case drakr = 16
-    case mala = 8
-    case nchuark = 4
-    case gibber = 2
+    case mallari = 240
+    case drakr = 80
+    case mala = 40
+    case nchuark = 10
+    case gibber = 5
     case sancar = 1
     
     var id: Currency { self }

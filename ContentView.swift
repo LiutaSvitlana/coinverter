@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TipKit
 
 struct ContentView: View {
     @State private var showExchangeInfo = false
@@ -21,6 +22,12 @@ struct ContentView: View {
     
     @State var leftCurrency: Currency = .drakr
     @State var rightCurrency: Currency = .mala
+    
+    let currencyTip = CurrencyTip()
+    
+    init() {
+        try? Tips.resetDatastore() 
+    }
     
     var body: some View {
         ZStack {
@@ -66,7 +73,9 @@ struct ContentView: View {
                             .shadow(color: .black.opacity(1), radius: 10)
                             .onTapGesture {
                                 showSelectCurrency.toggle()
+                                currencyTip.invalidate(reason:.actionPerformed)
                             }
+                            .popoverTip(currencyTip, arrowEdge: .bottom)
                         // Currency
                         HStack {
                             // Currency text
@@ -79,6 +88,7 @@ struct ContentView: View {
                             showSelectCurrency.toggle()
                         }
                         
+                        
                         // Text field
                         TextField("Amount", text: $leftAmount)
                             .textFieldStyle(.roundedBorder)
@@ -86,11 +96,7 @@ struct ContentView: View {
                             .cornerRadius(40)
                             .font(.subheadline)
                             .focused($leftTyping)
-                            .onChange(of: leftAmount) {
-                                if leftTyping {
-                                    rightAmount = leftCurrency.convert(leftAmount, to: rightCurrency)
-                                }
-                            }
+                            
 
                     }
                     // Equal sign
@@ -108,6 +114,7 @@ struct ContentView: View {
                             .shadow(color: .black.opacity(1), radius: 10)
                             .onTapGesture {
                                 showSelectCurrency.toggle()
+                                currencyTip.invalidate(reason:.actionPerformed)
                             }
                         // Currency
                         HStack {
@@ -128,12 +135,6 @@ struct ContentView: View {
                             .cornerRadius(40)
                             .font(.subheadline)
                             .focused($rightTyping)
-                            .onChange(of: rightAmount) {
-                                if rightTyping {
-                                    leftAmount = rightCurrency.convert(rightAmount, to: leftCurrency)
-                                }
-                            }
-
                     }
                     
                 }
@@ -153,6 +154,26 @@ struct ContentView: View {
                             .foregroundStyle(colorShame == .dark ? .black : .white)
                     }
                     .padding(.trailing)
+                    
+                    .task {
+                        try? Tips.configure()
+                    }
+                    .onChange(of: leftAmount) {
+                        if leftTyping {
+                            rightAmount = leftCurrency.convert(leftAmount, to: rightCurrency)
+                        }
+                    }
+                    .onChange(of: rightAmount) {
+                        if rightTyping {
+                            leftAmount = rightCurrency.convert(rightAmount, to: leftCurrency)
+                        }
+                    }
+                    .onChange(of: leftCurrency) {
+                        leftAmount = rightCurrency.convert(rightAmount, to: leftCurrency)
+                    }
+                    .onChange(of: rightCurrency) {
+                        rightAmount = leftCurrency.convert(leftAmount, to: rightCurrency)
+                    }
                     .sheet(isPresented: $showExchangeInfo) {
                         ExchangeInfo()
                     }
@@ -164,7 +185,7 @@ struct ContentView: View {
             }
 //            .border(.blue)
             .padding()
-            
+            .keyboardType(.decimalPad)
         }
     }
 }
