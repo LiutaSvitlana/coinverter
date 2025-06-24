@@ -11,8 +11,12 @@ struct ContentView: View {
     @State private var showExchangeInfo = false
     @State var showSelectCurrency = false
     
+    @FocusState var leftTyping
+    @FocusState var rightTyping
+    
     @State private var leftAmount = ""
     @State private var rightAmount = ""
+    
     @Environment(\.colorScheme) var colorShame
     
     @State var leftCurrency: Currency = .drakr
@@ -60,6 +64,9 @@ struct ContentView: View {
                             .scaledToFit()
                             .frame(width: 70)
                             .shadow(color: .black.opacity(1), radius: 10)
+                            .onTapGesture {
+                                showSelectCurrency.toggle()
+                            }
                         // Currency
                         HStack {
                             // Currency text
@@ -78,6 +85,13 @@ struct ContentView: View {
                             .multilineTextAlignment(.center)
                             .cornerRadius(40)
                             .font(.subheadline)
+                            .focused($leftTyping)
+                            .onChange(of: leftAmount) {
+                                if leftTyping {
+                                    rightAmount = leftCurrency.convert(leftAmount, to: rightCurrency)
+                                }
+                            }
+
                     }
                     // Equal sign
                     Image(systemName: "equal")
@@ -92,6 +106,9 @@ struct ContentView: View {
                             .scaledToFit()
                             .frame(width: 70)
                             .shadow(color: .black.opacity(1), radius: 10)
+                            .onTapGesture {
+                                showSelectCurrency.toggle()
+                            }
                         // Currency
                         HStack {
                             // Currency text
@@ -110,6 +127,13 @@ struct ContentView: View {
                             .multilineTextAlignment(.center)
                             .cornerRadius(40)
                             .font(.subheadline)
+                            .focused($rightTyping)
+                            .onChange(of: rightAmount) {
+                                if rightTyping {
+                                    leftAmount = rightCurrency.convert(rightAmount, to: leftCurrency)
+                                }
+                            }
+
                     }
                     
                 }
