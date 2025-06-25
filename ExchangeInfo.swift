@@ -42,17 +42,15 @@ struct ExchangeInfo: View {
                     .padding()
                 
                 // Exchange rates
-                ExchangeRate(leftImage: .drakr, text: "1 Drakr = 2 Mala", rightImage: .mala)
+                ExchangeRate(leftImage: .drakr, text: "1 Drakr = 10 Mala", rightImage: .mala)
                 
                 ExchangeRate(leftImage: .mala, text: "1 Mala = 4 Nchuark", rightImage: .nchuark)
                 
-                ExchangeRate(leftImage: .nchuark, text: "1 Nchuark = 2 Gibber", rightImage: .gibber)
+                ExchangeRate(leftImage: .nchuark, text: "1 Nchuark = 4 Gibber", rightImage: .gibber)
                 
-                ExchangeRate(leftImage: .gibber, text: "1 Gibber = 5 Sancar", rightImage: .sancar)
+                ExchangeRate(leftImage: .gibber, text: "1 Gibber = 4 Sancar", rightImage: .sancar)
                 
-                ExchangeRate(leftImage: .sancar, text: "1 Sancar = 2 Mallari", rightImage: .mallari)
-                
-                ExchangeRate(leftImage: .mallari, text: "1 Mallari = 3 Drakr", rightImage: .drakr)
+                ExchangeRate(leftImage: .mallari, text: "1 Mallari = 2 Drakr", rightImage: .drakr)
 
                 // Button
                 Button("Done") {

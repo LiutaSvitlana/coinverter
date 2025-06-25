@@ -20,14 +20,14 @@ struct ContentView: View {
     
     @Environment(\.colorScheme) var colorShame
     
-    @State var leftCurrency: Currency = .drakr
+    @State var leftCurrency = Currency.sancar
     @State var rightCurrency: Currency = .mala
     
     let currencyTip = CurrencyTip()
     
-    init() {
-        try? Tips.resetDatastore() 
-    }
+//    init() {
+//        try? Tips.resetDatastore() 
+//    }
     
     var body: some View {
         ZStack {
@@ -169,11 +169,17 @@ struct ContentView: View {
                         }
                     }
                     .onChange(of: leftCurrency) {
-                        leftAmount = rightCurrency.convert(rightAmount, to: leftCurrency)
+                        leftAmount = ""
                     }
                     .onChange(of: rightCurrency) {
-                        rightAmount = leftCurrency.convert(leftAmount, to: rightCurrency)
+                        rightAmount = ""
                     }
+//                    .onChange(of: leftCurrency) {
+//                        leftAmount = rightCurrency.convert(rightAmount, to: leftCurrency)
+//                    }
+//                    .onChange(of: rightCurrency) {
+//                        rightAmount = leftCurrency.convert(leftAmount, to: rightCurrency)
+//                    }
                     .sheet(isPresented: $showExchangeInfo) {
                         ExchangeInfo()
                     }
