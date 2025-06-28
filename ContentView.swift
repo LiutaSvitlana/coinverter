@@ -10,18 +10,18 @@ import TipKit
 
 struct ContentView: View {
     @State private var showExchangeInfo = false
-    @State var showSelectCurrency = false
+    @State private var showSelectCurrency = false
     
-    @FocusState var leftTyping
-    @FocusState var rightTyping
+    @FocusState private var leftTyping
+    @FocusState private var rightTyping
     
     @State private var leftAmount = ""
     @State private var rightAmount = ""
     
-    @Environment(\.colorScheme) var colorShame
+    @Environment(\.colorScheme) private var colorShame
     
-    @State var leftCurrency = Currency.sancar
-    @State var rightCurrency: Currency = .mala
+    @State private var leftCurrency = Currency.sancar
+    @State private var rightCurrency: Currency = .mala
     
     let currencyTip = CurrencyTip()
     
@@ -96,9 +96,8 @@ struct ContentView: View {
                             .cornerRadius(40)
                             .font(.subheadline)
                             .focused($leftTyping)
-                            
-
                     }
+
                     // Equal sign
                     Image(systemName: "equal")
                         .font(.largeTitle)
@@ -140,7 +139,7 @@ struct ContentView: View {
                 }
                 .padding()
                 .cornerRadius(30)
-                
+
                 Spacer()
                     
                 // Info button
@@ -174,12 +173,6 @@ struct ContentView: View {
                     .onChange(of: rightCurrency) {
                         rightAmount = ""
                     }
-//                    .onChange(of: leftCurrency) {
-//                        leftAmount = rightCurrency.convert(rightAmount, to: leftCurrency)
-//                    }
-//                    .onChange(of: rightCurrency) {
-//                        rightAmount = leftCurrency.convert(leftAmount, to: rightCurrency)
-//                    }
                     .sheet(isPresented: $showExchangeInfo) {
                         ExchangeInfo()
                     }
@@ -192,6 +185,9 @@ struct ContentView: View {
 //            .border(.blue)
             .padding()
             .keyboardType(.decimalPad)
+        }
+        .onTapGesture {
+            hideKeyboard()
         }
     }
 }

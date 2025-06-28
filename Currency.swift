@@ -61,3 +61,9 @@ enum Currency: Double, CaseIterable, Identifiable {
         return String(format: "%.2f", convertedAmount)
     }
 }
+
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
